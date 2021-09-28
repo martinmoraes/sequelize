@@ -1,8 +1,12 @@
-const Sequelize = require("sequelize");
+// https://sequelize.org/master/class/lib/model.js~Model.html#static-method-bulkCreate
+// https://sequelize.org/master/manual/raw-queries.html
+// https://sequelize.org/master/variable/index.html#static-variable-QueryTypes
 
-const sequelize = new Sequelize("teste", "lineset", "!qAz@wSx123", {
-  dialect: "mysql",
-  host: "localhost",
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('teste', 'lineset', '!qAz@wSx123', {
+  dialect: 'mysql',
+  host: 'localhost',
   logging: false,
 });
 

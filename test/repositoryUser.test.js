@@ -3,6 +3,7 @@ const database = require('../src/db');
 
 describe('RepositoryUser', () => {
   const repositoryUser = new RepositoryUser();
+
   it('Sync DB', async () => {
     const received = await database.sync();
     console.log(received);
