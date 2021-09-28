@@ -1,4 +1,4 @@
-class User {
+class UserUseCase {
   constructor(repository) {
     this.repository = repository;
   }
@@ -52,8 +52,8 @@ class User {
       const data = [];
       for (let x = 1; x <= 1000; x++) {
         data.push({
-          firstName: "Sofia" + this.random(),
-          lastName: "moraes",
+          firstName: 'Sofia' + this.random(),
+          lastName: 'moraes',
         });
       }
       resolve(data);
@@ -61,13 +61,11 @@ class User {
   }
 
   random() {
-    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    let result = characters.charAt(
-      Math.floor(Math.random() * characters.length)
-    );
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let result = characters.charAt(Math.floor(Math.random() * characters.length));
     result += characters.charAt(Math.floor(Math.random() * characters.length));
     return result;
   }
 }
 
-module.exports = { User };
+module.exports = { UserUseCase };

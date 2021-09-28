@@ -1,5 +1,5 @@
 const { RepositoryUser, sequelize } = require('../src/_repositoryUser');
-const { User } = require('../src/_user');
+const { UserUseCase } = require('../src/_userUseCase');
 
 describe('RepositoryUser', () => {
   beforeAll(async () => {});
@@ -8,7 +8,7 @@ describe('RepositoryUser', () => {
   let user;
   beforeEach(() => {
     repositoryUser = new RepositoryUser();
-    user = new User(repositoryUser);
+    user = new UserUseCase(repositoryUser);
   });
 
   const user01 = {
