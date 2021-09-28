@@ -1,7 +1,7 @@
-const { RepositoryUser, sequelize } = require("../src/repositoryUser");
-const { User } = require("../src/user");
+const { RepositoryUser, sequelize } = require('../src/_repositoryUser');
+const { User } = require('../src/_user');
 
-describe("RepositoryUser", () => {
+describe('RepositoryUser', () => {
   beforeAll(async () => {});
 
   let repositoryUser;
@@ -12,25 +12,25 @@ describe("RepositoryUser", () => {
   });
 
   const user01 = {
-    firstName: "martin",
-    lastName: "moraes",
+    firstName: 'martin',
+    lastName: 'moraes',
   };
   const user02 = {
-    firstName: "danilo",
-    lastName: "moraes",
+    firstName: 'danilo',
+    lastName: 'moraes',
   };
   const user03 = {
-    firstName: "juliana",
-    lastName: "moraes",
+    firstName: 'juliana',
+    lastName: 'moraes',
   };
 
-  it("DB", async () => {
+  it('DB', async () => {
     const received = await sequelize.sync();
     console.log(received);
-    expect(received.config.database).toEqual("teste");
+    expect(received.config.database).toEqual('teste');
   });
 
-  it("Create um a um", async () => {
+  it('Create um a um', async () => {
     try {
       const transaction = await repositoryUser.getTransaction();
       let received = await repositoryUser.create(user01, transaction);
@@ -44,21 +44,11 @@ describe("RepositoryUser", () => {
     }
   });
 
-  it("Create em array", async () => {
+  it('Create em array', async () => {
     let received;
     try {
       const transaction = await repositoryUser.getTransaction();
-      const user = [
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-      ];
+      const user = [user01, user02, user03, user01, user02, user03, user01, user02, user03];
       received = await repositoryUser.createAll(user, transaction);
       console.log(received);
       //   transaction.commit();
@@ -68,21 +58,11 @@ describe("RepositoryUser", () => {
     expect(received).toEqual(9);
   });
 
-  it("Create em FindOrCreateAll", async () => {
+  it('Create em FindOrCreateAll', async () => {
     let received;
     try {
       const transaction = await repositoryUser.getTransaction();
-      const user = [
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-      ];
+      const user = [user01, user02, user03, user01, user02, user03, user01, user02, user03];
       received = await repositoryUser.findOrCreateAll(user, transaction);
       console.log(received);
       await transaction.commit();
@@ -95,22 +75,12 @@ describe("RepositoryUser", () => {
     expect(received).toEqual(9);
   });
 
-  it("Multi transaction", async () => {
+  it('Multi transaction', async () => {
     let received;
     try {
       const transactionA = await repositoryUser.getTransaction();
       const transactionB = await repositoryUser.getTransaction();
-      const user = [
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-        user01,
-        user02,
-        user03,
-      ];
+      const user = [user01, user02, user03, user01, user02, user03, user01, user02, user03];
       received = await repositoryUser.findOrCreateAll(user, transactionA);
       console.log(received);
       await transactionA.commit();
@@ -124,21 +94,21 @@ describe("RepositoryUser", () => {
     expect(received).toEqual(9);
   });
 
-  it("Sincrono Multi", async () => {
+  it('Sincrono Multi', async () => {
     jest.setTimeout(500000);
     let received = await user.makeRequestSyncrono();
     console.log(received.length);
     expect(received).toEqual(5);
   });
 
-  it("Asincrono Multi", async () => {
+  it('Asincrono Multi', async () => {
     jest.setTimeout(500000);
     let received = await user.makeRequestAsyncrono();
     console.log(received.length);
     expect(received).toEqual(5);
   });
 
-  it("Random", () => {
+  it('Random', () => {
     const received = user.random();
     console.log(received);
     expect(received).toEqual(expect.any(String));

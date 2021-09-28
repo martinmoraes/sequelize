@@ -6,6 +6,7 @@ class RepositoryUser {
     return received.dataValues;
   }
 
+  //https://sequelize.org/master/manual/model-querying-finders.html
   async findAll() {
     const users = await ModelUser.findAll();
     return users;
