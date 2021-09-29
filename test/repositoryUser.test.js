@@ -89,6 +89,7 @@ describe('RepositoryUser', () => {
       console.log(received);
       expect(received).toEqual(1);
     });
+
     it('DeleteById Model', async () => {
       const newUser = await repositoryUser.create({
         name: 'João Silva',
